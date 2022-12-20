@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Validación de Tarjeta de Crédito</title>
+    <link rel="stylesheet" href="style.css" />
+       
+   </head> 
+
+<style>
+  form {
+    width: 400px;
+    height: 630px;
+    margin: auto;
+    background-color: white;
+    font-size: 1em;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 9px;
+          
+  }
+   
+</style>
+
+  <body> 
+
+    <main> 
+ 
+    <h1> CAROLINA´S BOUTIQUE</h1>
+
+  
+  <h2> Datos Tarjeta de Crédito</h2>
+  <br>
+  <p>Número de Tarjeta de Crédito</p>
+
+  <textarea  id="cc" name="numeros" placeholder="Ingrese 16 dígitos" required=""
+  maxlength="16" size="16" pattern="[0-9]+"></textarea>  <br><br>
+
+  <p class="center content"></p>
+  
+  <button class= "btn" id="button"> Validar Tarjeta </button> <br><br>
+   
+  <textarea  id="mensaje" name = "name"> </textarea>
+
+      </main>
+    <footer></footer>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
