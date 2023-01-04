@@ -26,50 +26,44 @@ const validator =  {
   // algoritmo de Luhn para validar tarjeta de Crédito
  
   isValid: function (creditCardNumber)  {
-    
-    // se declara un array para revertir la posición de los numeros 
 
-    const arrayReverseOfNumber = creditCardNumber.toString().split('').reverse();
-    
-    // se declara un array de suma
-    const arrayToSum = [];
-   
-    //se llama a los elementos  del array
-    arrayReverseOfNumber.forEach((e,i) =>{ // números pares e impares
-    
-      //Mediante condicional if...else aplicamos algoritmo de Luhn para validar tarjeta 
-      //Numeros pares
-      if(i%2!==0){ 
-        const numPar = e*2; // números en posición par se multiplica * 2
-        if(numPar >= 10) { // condicional si resultado mayor a 10
-          // resultado mayor a 10 se suman los 2 digitos
-          arrayToSum.push(
-            numPar.toString().split('').reduce((a,b) => parseInt (a) + parseInt(b))); 
+    const longitud = creditCardNumber.length;
+    let suma = 0;
+    // asegurarnos que la longitud sea par
+    if(longitud % 2 === 0)
+    {
+      //Comenzar a duplicar desde el primer número
+      for(let i = 0; i < longitud; i++)
+      {
+        let digito = parseInt(creditCardNumber[i]);
+        if (i % 2 === 0) // Sólo duplicaremos las posiciones impares
 
-        // suma de los nuevos números pares y los impares
-        } else {
-          arrayToSum.push(numPar);
+        
+        {
+          if ((digito *= 2) > 9) //Condicional si el número es de dos cifras
+          {
+            //separamos los números como dos variables
+            const num2 = digito % 10;
+            const num1 = parseInt(digito / 10);
+
+            // sumamos las cifras
+            digito = num1 + num2;
+          }
         }
-      } else {
-        arrayToSum.push(parseInt(e));
+        suma += digito;
       }
-    });
-
-    // Resultado número debe ser multiplo de 10 = Tarjeta Válida
-    const totalSum = arrayToSum.reduce((a,b) => a + b);{
-      if (totalSum %10 === 0){
-        return true;
-      
-      } else { // si no cumple con la condicional = Tarjeta no Válida
-        return false;
-      }
-       
     }
+    //El resultado debe ser múltiplo de 10
+    return (suma % 10) === 0;
 
   }
+
 }
- 
+   
+
+
 export default validator;
+
 
 
 
